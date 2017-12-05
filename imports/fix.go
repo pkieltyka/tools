@@ -255,9 +255,10 @@ func fixImports(fset *token.FileSet, f *ast.File, filename string) (added []stri
 			}
 			ipath, rename, err := findImport(pkgName, symbols, filename)
 			r := result{ipath: ipath, err: err}
-			if rename {
-				r.name = pkgName
-			}
+			_ = rename
+			// if rename {
+			// 	r.name = pkgName
+			// }
 			results <- r
 		}(pkgName, symbols)
 		searches++
